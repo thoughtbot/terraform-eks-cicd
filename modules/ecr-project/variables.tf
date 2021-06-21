@@ -41,6 +41,12 @@ variable "policies" {
   default     = {}
 }
 
+variable "secondary_ecr_repositories" {
+  type        = list(string)
+  description = "Additional ECR repositories this project needs to use"
+  default     = []
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags to be applied to created resources"

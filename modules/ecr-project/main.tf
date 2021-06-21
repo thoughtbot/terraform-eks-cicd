@@ -41,10 +41,19 @@ data "aws_iam_policy_document" "ecr" {
       "ecr:PutImage",
       "ecr:UploadLayerPart"
     ]
-    resources = [data.aws_ecr_repository.this.arn]
+    resources = concat(
+      [data.aws_ecr_repository.this.arn],
+      values(data.aws_ecr_repository.secondary).*.arn
+    )
   }
 }
 
 data "aws_ecr_repository" "this" {
   name = var.ecr_repository
+}
+
+data "aws_ecr_repository" "secondary" {
+  for_each = toset(var.secondary_ecr_repositories)
+
+  name = each.value
 }

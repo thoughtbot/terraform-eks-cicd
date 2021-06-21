@@ -22,6 +22,8 @@ The modules provide the major building blocks:
 
 ### Setup
 
+* [ecr-repository](./modules/ecr-repository): Create ECR repositories for your
+  pipelines
 * [artifact-bucket](./modules/artifact-bucket): Create artifact buckets for your
   pipelines
 * [codebuild-credential](./modules/codebuild-credential): Connect CodeBuild to GitHub to

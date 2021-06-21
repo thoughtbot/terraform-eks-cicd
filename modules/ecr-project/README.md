@@ -42,6 +42,7 @@ To use this module:
 | Name | Type |
 |------|------|
 | [aws_iam_policy.ecr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_ecr_repository.secondary](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecr_repository) | data source |
 | [aws_ecr_repository.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecr_repository) | data source |
 | [aws_iam_policy_document.ecr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
@@ -57,6 +58,7 @@ To use this module:
 | <a name="input_name"></a> [name](#input\_name) | Name for this CodeBuild project | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Prefix to apply to created resources | `list(string)` | `[]` | no |
 | <a name="input_policies"></a> [policies](#input\_policies) | Additional policies for this CodeBuild project's role | `map(object({ arn = string }))` | `{}` | no |
+| <a name="input_secondary_ecr_repositories"></a> [secondary\_ecr\_repositories](#input\_secondary\_ecr\_repositories) | Additional ECR repositories this project needs to use | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be applied to created resources | `map(string)` | `{}` | no |
 
 ## Outputs
