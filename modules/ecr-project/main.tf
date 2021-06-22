@@ -16,6 +16,19 @@ module "project" {
   }
 }
 
+resource "aws_codebuild_webhook" "project" {
+  count = var.enable_github_webhook ? 1 : 0
+
+  project_name = module.project.name
+
+  filter_group {
+    filter {
+      type    = "EVENT"
+      pattern = "PULL_REQUEST_CREATED,PULL_REQUEST_UPDATED"
+    }
+  }
+}
+
 resource "aws_iam_policy" "ecr" {
   name   = join("-", concat(var.namespace, [var.name, "ecr"]))
   policy = data.aws_iam_policy_document.ecr.json

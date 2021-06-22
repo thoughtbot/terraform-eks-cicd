@@ -41,6 +41,7 @@ To use this module:
 
 | Name | Type |
 |------|------|
+| [aws_codebuild_webhook.project](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codebuild_webhook) | resource |
 | [aws_iam_policy.ecr](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_ecr_repository.secondary](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecr_repository) | data source |
 | [aws_ecr_repository.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecr_repository) | data source |
@@ -54,6 +55,7 @@ To use this module:
 | <a name="input_buildspec"></a> [buildspec](#input\_buildspec) | Override the buildspec for this project | `string` | `null` | no |
 | <a name="input_codestar_connection"></a> [codestar\_connection](#input\_codestar\_connection) | SSM parameter containing the ARN of the CodeStar connection | `string` | n/a | yes |
 | <a name="input_ecr_repository"></a> [ecr\_repository](#input\_ecr\_repository) | ECR repository to which images should be pushed | `string` | n/a | yes |
+| <a name="input_enable_github_webhook"></a> [enable\_github\_webhook](#input\_enable\_github\_webhook) | Set to false if the GitHub token can't manage webhooks | `bool` | `true` | no |
 | <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | Full name of the GitHub repository at which source is found | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name for this CodeBuild project | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Prefix to apply to created resources | `list(string)` | `[]` | no |

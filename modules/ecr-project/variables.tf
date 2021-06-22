@@ -19,6 +19,12 @@ variable "ecr_repository" {
   description = "ECR repository to which images should be pushed"
 }
 
+variable "enable_github_webhook" {
+  type        = bool
+  description = "Set to false if the GitHub token can't manage webhooks"
+  default     = true
+}
+
 variable "github_repository" {
   type        = string
   description = "Full name of the GitHub repository at which source is found"
