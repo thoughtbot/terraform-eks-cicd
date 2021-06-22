@@ -14,6 +14,11 @@ variable "codestar_connection" {
   description = "SSM parameter containing the ARN of the CodeStar connection"
 }
 
+variable "enable_github_webhook" {
+  type        = bool
+  description = "Set to false if the GitHub token can't manage webhooks"
+}
+
 variable "environment_variables" {
   description = "Environment variables to set during the build"
   type        = map(string)

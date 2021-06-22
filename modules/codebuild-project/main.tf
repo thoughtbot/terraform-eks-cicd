@@ -50,6 +50,19 @@ resource "aws_codebuild_project" "this" {
   }
 }
 
+resource "aws_codebuild_webhook" "project" {
+  count = var.enable_github_webhook ? 1 : 0
+
+  project_name = aws_codebuild_project.this.name
+
+  filter_group {
+    filter {
+      type    = "EVENT"
+      pattern = "PULL_REQUEST_CREATED,PULL_REQUEST_UPDATED"
+    }
+  }
+}
+
 resource "aws_iam_role" "codebuild" {
   name               = local.name
   assume_role_policy = data.aws_iam_policy_document.codebuild_assume_role.json

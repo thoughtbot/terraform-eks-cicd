@@ -1,31 +1,19 @@
 module "project" {
   source = "../codebuild-project"
 
-  artifacts_bucket    = var.artifacts_bucket
-  buildspec           = var.buildspec
-  codestar_connection = var.codestar_connection
-  github_repository   = var.github_repository
-  name                = var.name
-  namespace           = var.namespace
-  policies            = merge(var.policies, { ecr = aws_iam_policy.ecr })
-  privileged_mode     = true
-  tags                = var.tags
+  artifacts_bucket      = var.artifacts_bucket
+  buildspec             = var.buildspec
+  codestar_connection   = var.codestar_connection
+  enable_github_webhook = var.enable_github_webhook
+  github_repository     = var.github_repository
+  name                  = var.name
+  namespace             = var.namespace
+  policies              = merge(var.policies, { ecr = aws_iam_policy.ecr })
+  privileged_mode       = true
+  tags                  = var.tags
 
   environment_variables = {
     ECR_REPOSITORY_NAME = data.aws_ecr_repository.this.name
-  }
-}
-
-resource "aws_codebuild_webhook" "project" {
-  count = var.enable_github_webhook ? 1 : 0
-
-  project_name = module.project.name
-
-  filter_group {
-    filter {
-      type    = "EVENT"
-      pattern = "PULL_REQUEST_CREATED,PULL_REQUEST_UPDATED"
-    }
   }
 }
 

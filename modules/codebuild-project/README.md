@@ -32,6 +32,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_codebuild_project.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codebuild_project) | resource |
+| [aws_codebuild_webhook.project](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codebuild_webhook) | resource |
 | [aws_iam_role.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.codebuild](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy_attachment.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
@@ -48,6 +49,7 @@ No modules.
 | <a name="input_artifacts_bucket"></a> [artifacts\_bucket](#input\_artifacts\_bucket) | Name of the S3 bucket in which artifacts are stored | `string` | n/a | yes |
 | <a name="input_buildspec"></a> [buildspec](#input\_buildspec) | Override the buildspec for this project | `string` | `null` | no |
 | <a name="input_codestar_connection"></a> [codestar\_connection](#input\_codestar\_connection) | SSM parameter containing the ARN of the CodeStar connection | `string` | n/a | yes |
+| <a name="input_enable_github_webhook"></a> [enable\_github\_webhook](#input\_enable\_github\_webhook) | Set to false if the GitHub token can't manage webhooks | `bool` | n/a | yes |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | Environment variables to set during the build | `map(string)` | `{}` | no |
 | <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | Full name of the GitHub repository at which source is found | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name for this CodeBuild project | `string` | n/a | yes |

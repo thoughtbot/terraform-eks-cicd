@@ -49,6 +49,7 @@ To use this module:
 | <a name="input_buildspec"></a> [buildspec](#input\_buildspec) | Override the buildspec for this project | `string` | `null` | no |
 | <a name="input_codestar_connection"></a> [codestar\_connection](#input\_codestar\_connection) | SSM parameter containing the ARN of the CodeStar connection | `string` | n/a | yes |
 | <a name="input_ecr_repository"></a> [ecr\_repository](#input\_ecr\_repository) | ECR repository from which images should be pulled | `string` | n/a | yes |
+| <a name="input_enable_github_webhook"></a> [enable\_github\_webhook](#input\_enable\_github\_webhook) | Set to false if the GitHub token can't manage webhooks | `bool` | `true` | no |
 | <a name="input_manifests_repository"></a> [manifests\_repository](#input\_manifests\_repository) | Full name of the GitHub repository in which manifests are found | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name for this CodeBuild project | `string` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Prefix to apply to created resources | `list(string)` | `[]` | no |
