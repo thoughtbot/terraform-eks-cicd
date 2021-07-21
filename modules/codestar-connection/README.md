@@ -46,5 +46,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the created CodeStar connection |
 | <a name="output_parameter"></a> [parameter](#output\_parameter) | SSM parameter containing the ARN of the CodeStar connection |
 <!-- END_TF_DOCS -->

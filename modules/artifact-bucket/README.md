@@ -41,5 +41,8 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the created bucket |
+| <a name="output_name"></a> [name](#output\_name) | Name of the created bucket |
 <!-- END_TF_DOCS -->
