@@ -14,7 +14,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Check format
-      run: make checkfmt
+      run: make all/checkfmt
 
   validate:
     name: Validate
@@ -27,7 +27,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Validate
-      run: make validate
+      run: make all/validate
 
   docs:
     name: Docs
@@ -60,4 +60,4 @@ jobs:
         tflint_version: v0.29.0
 
     - name: Lint
-      run: make lint
+      run: make all/lint

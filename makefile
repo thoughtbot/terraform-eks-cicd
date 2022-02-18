@@ -6,6 +6,7 @@ MODULES         := $(wildcard modules/*)
 MODULEMAKEFILES := $(foreach module,$(MODULES),$(module)/makefile)
 MAKEMODULES     := $(foreach module,$(MODULES),$(module)/default)
 CLEANMODULES    := $(foreach module,$(MODULES),$(module)/clean)
+MODULESCOMMAND  ?= default
 
 .PHONY: default
 default: modules
@@ -27,13 +28,16 @@ $(MODULEMAKEFILES): %/makefile: makefiles/terraform.mk
 makemodules: $(MAKEMODULES)
 
 $(MAKEMODULES): %/default: .terraformrc
-	$(MAKE) -C "$*"
+	$(MAKE) -C "$*" "$(MODULESCOMMAND)"
 
 $(CLEANMODULES): %/clean:
 	$(MAKE) -C "$*" clean
 
 .PHONY: clean
 clean: $(CLEANMODULES)
+
+all/%:
+	$(MAKE) modules SUBMODULESCOMMAND=$(*)
 
 .terraformrc:
 	mkdir -p .terraform-plugins
