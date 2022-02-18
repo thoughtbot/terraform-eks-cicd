@@ -37,7 +37,7 @@ $(CLEANMODULES): %/clean:
 clean: $(CLEANMODULES)
 
 all/%:
-	$(MAKE) modules SUBMODULESCOMMAND=$(*)
+	$(MAKE) modules MODULESCOMMAND=$(*)
 
 .terraformrc:
 	mkdir -p .terraform-plugins
