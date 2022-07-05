@@ -3,6 +3,12 @@ variable "cluster_name" {
   description = "Name of the EKS cluster"
 }
 
+variable "eks_deploy_role_name" {
+  type        = string
+  description = "Name of role for EKS access"
+  default     = ""
+}
+
 variable "github_branches" {
   description = "Branches allowed to push to this repository"
   type        = list(string)
