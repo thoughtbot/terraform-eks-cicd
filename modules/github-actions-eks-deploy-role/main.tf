@@ -1,11 +1,11 @@
 resource "aws_iam_role" "this" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-  name               = "${var.cluster_name}-deploy"
+  name               = local.role_name
   tags               = merge(var.tags, local.tags)
 }
 
 resource "aws_iam_role_policy" "eks" {
-  name   = "${var.cluster_name}-deploy"
+  name   = local.role_name
   role   = aws_iam_role.this.id
   policy = data.aws_iam_policy_document.eks.json
 }
@@ -41,6 +41,7 @@ data "aws_eks_cluster" "this" {
 }
 
 locals {
+  role_name = coalesce(var.eks_deploy_role_name, "${var.cluster_name}-deploy")
   tags = {
     deployTo = var.cluster_name
   }
