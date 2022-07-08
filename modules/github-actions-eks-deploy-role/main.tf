@@ -49,6 +49,11 @@ locals {
     [
       for branch in var.github_branches :
       "ref:refs/heads/${branch}"
-    ]
+    ],
+    (
+      var.allow_github_pull_requests ?
+      ["pull_request"] :
+      []
+    )
   )
 }

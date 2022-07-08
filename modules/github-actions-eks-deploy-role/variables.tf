@@ -1,3 +1,9 @@
+variable "allow_github_pull_requests" {
+  description = "Set to true to enable running from pull requests"
+  type        = bool
+  default     = false
+}
+
 variable "cluster_name" {
   type        = string
   description = "Name of the EKS cluster"
