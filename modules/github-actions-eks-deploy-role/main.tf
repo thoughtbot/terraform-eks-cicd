@@ -34,6 +34,21 @@ data "aws_iam_policy_document" "eks" {
     actions   = ["eks:DescribeCluster"]
     resources = [data.aws_eks_cluster.this.arn]
   }
+
+  statement {
+    sid       = "AllowECRAuth"
+    actions   = ["ecr:GetAuthorizationToken"]
+    resources = ["*"]
+  }
+
+  statement {
+    sid = "AllowPull"
+    actions = [
+      "ecr:BatchGetImage",
+      "ecr:GetDownloadUrlForLayer"
+    ]
+    resources = ["*"]
+  }
 }
 
 data "aws_eks_cluster" "this" {
