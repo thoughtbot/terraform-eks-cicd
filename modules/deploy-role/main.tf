@@ -15,8 +15,11 @@ data "aws_iam_policy_document" "assume_role" {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
     principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::${var.deployment_account_id}:root"]
+      type = "AWS"
+      identifiers = [
+        for account_id in var.deployment_account_ids :
+        "arn:aws:iam::${account_id}:root"
+      ]
     }
     condition {
       test     = "StringEquals"

@@ -57,7 +57,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the EKS cluster | `string` | n/a | yes |
-| <a name="input_deployment_account_id"></a> [deployment\_account\_id](#input\_deployment\_account\_id) | ID of the AWS account containing CodeBuild projects | `string` | n/a | yes |
+| <a name="input_deployment_account_ids"></a> [deployment\_account\_ids](#input\_deployment\_account\_ids) | IDs of AWS accounts running continuous deployment | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be applied to created AWS resources | `map(string)` | `{}` | no |
 
 ## Outputs

@@ -3,9 +3,9 @@ variable "cluster_name" {
   description = "Name of the EKS cluster"
 }
 
-variable "deployment_account_id" {
-  type        = string
-  description = "ID of the AWS account containing CodeBuild projects"
+variable "deployment_account_ids" {
+  type        = list(string)
+  description = "IDs of AWS accounts running continuous deployment"
 }
 
 variable "tags" {
