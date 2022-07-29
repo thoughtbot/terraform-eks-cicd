@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "eks" {
   statement {
     effect    = "Allow"
     actions   = ["eks:DescribeCluster"]
-    resources = [data.aws_eks_cluster.this.arn]
+    resources = ["*"]
   }
 }
 
