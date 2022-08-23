@@ -1,6 +1,7 @@
 resource "aws_iam_role" "this" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
   name               = local.role_name
+  # TODO: tags
   tags               = merge(var.tags, local.tags)
 }
 
@@ -29,6 +30,19 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 data "aws_iam_policy_document" "eks" {
+  # if multi-account
+  statement {
+    sid       = "AssumeDeployRoles"
+    actions   = ["sts:AssumeRole"]
+    resources = ["*"]
+    condition {
+      test     = "StringEquals"
+      variable = "iam:ResourceTag/deployTo"
+      values   = var.cluster_names
+    }
+  }
+
+  # if EKS in same account
   statement {
     effect    = "Allow"
     actions   = ["eks:DescribeCluster"]
@@ -57,6 +71,8 @@ data "aws_eks_cluster" "this" {
 
 locals {
   role_name = coalesce(var.eks_deploy_role_name, "${var.cluster_name}-deploy")
+
+  # TODO: need deployTo?
   tags = {
     deployTo = var.cluster_name
   }
