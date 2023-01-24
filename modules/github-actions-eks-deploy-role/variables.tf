@@ -4,15 +4,9 @@ variable "allow_github_pull_requests" {
   default     = false
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Name of the EKS cluster"
-}
-
-variable "eks_deploy_role_name" {
-  type        = string
-  description = "Name of role for EKS access"
-  default     = ""
+variable "cluster_names" {
+  type        = list(string)
+  description = "Names of the EKS clusters to which this role can deploy"
 }
 
 variable "github_branches" {
@@ -32,6 +26,11 @@ variable "github_repository" {
 
 variable "iam_oidc_provider_arn" {
   description = "ARN of the IAM OIDC provider for GitHub"
+  type        = string
+}
+
+variable "name" {
+  description = "Name of the IAM role"
   type        = string
 }
 

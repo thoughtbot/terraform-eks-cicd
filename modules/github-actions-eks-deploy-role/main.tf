@@ -1,13 +1,13 @@
 resource "aws_iam_role" "this" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-  name               = local.role_name
-  tags               = merge(var.tags, local.tags)
+  name               = var.name
+  tags               = merge(var.tags, local.cluster_tags)
 }
 
-resource "aws_iam_role_policy" "eks" {
-  name   = local.role_name
+resource "aws_iam_role_policy" "permissions" {
+  name   = var.name
+  policy = data.aws_iam_policy_document.permissions.json
   role   = aws_iam_role.this.id
-  policy = data.aws_iam_policy_document.eks.json
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -28,11 +28,11 @@ data "aws_iam_policy_document" "assume_role" {
   }
 }
 
-data "aws_iam_policy_document" "eks" {
+data "aws_iam_policy_document" "permissions" {
   statement {
     effect    = "Allow"
     actions   = ["eks:DescribeCluster"]
-    resources = [data.aws_eks_cluster.this.arn]
+    resources = ["*"]
   }
 
   statement {
@@ -51,15 +51,7 @@ data "aws_iam_policy_document" "eks" {
   }
 }
 
-data "aws_eks_cluster" "this" {
-  name = var.cluster_name
-}
-
 locals {
-  role_name = coalesce(var.eks_deploy_role_name, "${var.cluster_name}-deploy")
-  tags = {
-    deployTo = var.cluster_name
-  }
   repository_targets = concat(
     [
       for branch in var.github_branches :
@@ -70,5 +62,10 @@ locals {
       ["pull_request"] :
       []
     )
+  )
+
+  cluster_tags = zipmap(
+    [for cluster in var.cluster_names : "cluster.${cluster}.deploy"],
+    [for cluster in var.cluster_names : "true"]
   )
 }
