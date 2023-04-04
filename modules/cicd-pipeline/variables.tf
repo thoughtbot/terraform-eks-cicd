@@ -28,6 +28,12 @@ variable "ecr_project" {
   type        = string
 }
 
+variable "deploy_env_vars" {
+  description = "Environment variables to be set during deploy"
+  type        = map(string)
+  default     = {}
+}
+
 variable "kms_key" {
   description = "KMS key for encrypting data in this pipeline"
   type        = object({ arn = string })
