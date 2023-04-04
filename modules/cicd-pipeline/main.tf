@@ -104,12 +104,13 @@ resource "aws_codepipeline" "this" {
         configuration = {
           ProjectName = local.deploy_project.name
 
-          EnvironmentVariables = jsonencode([
+          EnvironmentVariables = jsonencode(concat([
             { name = "DEPLOY_ROLE_ARN", value = action.value.role_arn },
             { name = "EKS_CLUSTER_NAME", value = action.value.cluster_name },
             { name = "EKS_CLUSTER_REGION", value = action.value.region },
             { name = "MANIFEST_PATH", value = action.value.manifest_path }
-          ])
+            ], local.input_env_variables)
+          )
         }
       }
     }
@@ -252,4 +253,8 @@ locals {
     ])
     name = var.manifests_project
   }
+  input_env_variables = [for env_key in keys(var.deploy_env_vars) : {
+    name  = upper(env_key)
+    value = var.deploy_env_vars[env_key]
+  }]
 }
