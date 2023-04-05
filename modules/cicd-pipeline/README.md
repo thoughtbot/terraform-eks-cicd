@@ -19,7 +19,7 @@ a pipeline for continuous integration and deployment.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.23.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.61.0 |
 
 ## Modules
 
@@ -47,6 +47,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_artifacts_bucket"></a> [artifacts\_bucket](#input\_artifacts\_bucket) | Name of the S3 bucket in which artifacts are stored | `string` | n/a | yes |
 | <a name="input_codestar_connection"></a> [codestar\_connection](#input\_codestar\_connection) | SSM parameter containing the ARN of the CodeStar connection | `string` | n/a | yes |
+| <a name="input_deploy_env_vars"></a> [deploy\_env\_vars](#input\_deploy\_env\_vars) | Environment variables to be set during deploy | `map(string)` | `{}` | no |
 | <a name="input_deploy_project"></a> [deploy\_project](#input\_deploy\_project) | Name of the CodeBuild project for deploying | `string` | n/a | yes |
 | <a name="input_deployments"></a> [deployments](#input\_deployments) | Deployments managed by this pipeline | <pre>map(object({<br>    cluster_name  = string<br>    region        = string<br>    role_arn      = string<br>    manifest_path = string<br>  }))</pre> | n/a | yes |
 | <a name="input_ecr_project"></a> [ecr\_project](#input\_ecr\_project) | Name of the CodeBuild project for building ECR images | `string` | n/a | yes |
