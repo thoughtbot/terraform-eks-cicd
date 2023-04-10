@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Install Terraform
-      uses: little-core-labs/install-terraform@v2.0.0
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
       with:
-          version: 1.2.6
+        terraform_version: 1.2.6
 
     - name: Check format
       run: make all/checkfmt
@@ -23,12 +23,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Install Terraform
-      uses: little-core-labs/install-terraform@v2.0.0
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
       with:
-          version: 1.2.6
+        terraform_version: 1.2.6
 
     - name: Validate
       run: make all/validate
@@ -38,10 +38,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Docs
-      uses: terraform-docs/gh-actions@b70f26cbb942d355a1ec99d3aa5707a35e838b81
+      uses: terraform-docs/gh-actions@v1.0.0
       with:
         git-push: true
         output-file: README.md
@@ -53,15 +53,15 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: Install Terraform
-      uses: little-core-labs/install-terraform@v2.0.0
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
       with:
-          version: 1.2.6
+        terraform_version: 1.2.6
 
     - name: Setup TFLint
-      uses: terraform-linters/setup-tflint@v1
+      uses: terraform-linters/setup-tflint@v3
       with:
         tflint_version: v0.38.1
 
