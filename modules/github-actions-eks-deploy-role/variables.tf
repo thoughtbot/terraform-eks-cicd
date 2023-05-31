@@ -29,6 +29,18 @@ variable "iam_oidc_provider_arn" {
   type        = string
 }
 
+variable "managed_prometheus_namespace_prefix" {
+  description = "Allowed prefix for AMP rules; defaults to GitHub repository"
+  type        = string
+  default     = null
+}
+
+variable "managed_prometheus_workspace_ids" {
+  description = "Allowed AMP workspace; disabled if empty"
+  type        = list(string)
+  default     = []
+}
+
 variable "name" {
   description = "Name of the IAM role"
   type        = string

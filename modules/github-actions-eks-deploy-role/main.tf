@@ -49,9 +49,74 @@ data "aws_iam_policy_document" "permissions" {
     ]
     resources = ["*"]
   }
+
+  dynamic "statement" {
+    for_each = length(var.managed_prometheus_workspace_ids) == 0 ? [] : [true]
+
+    content {
+      sid = "AllowManageAMPRules"
+      actions = [
+        "aps:CreateRuleGroupsNamespace",
+        "aps:DescribeRuleGroupsNamespace",
+        "aps:PutRuleGroupsNamespace",
+        "aps:DeleteRuleGroupsNamespace",
+      ]
+      resources = [
+        for workspace_id in var.managed_prometheus_workspace_ids :
+        join(":", [
+          "arn",
+          data.aws_partition.this.partition,
+          "aps",
+          data.aws_region.this.name,
+          data.aws_caller_identity.this.account_id,
+          "rulegroupsnamespace/${workspace_id}/${local.amp_prefix}*"
+        ])
+      ]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = length(var.managed_prometheus_workspace_ids) == 0 ? [] : [true]
+    content {
+      sid = "AllowListAMPRules"
+      actions = [
+        "aps:ListRuleGroupsNamespaces",
+      ]
+      resources = [
+        for workspace_id in var.managed_prometheus_workspace_ids :
+        join(":", [
+          "arn",
+          data.aws_partition.this.partition,
+          "aps",
+          data.aws_region.this.name,
+          data.aws_caller_identity.this.account_id,
+          "workspace/${workspace_id}"
+        ])
+      ]
+    }
+  }
+
+  dynamic "statement" {
+    for_each = length(var.managed_prometheus_workspace_ids) == 0 ? [] : [true]
+    content {
+      sid       = "AllowListAMPWorkspaces"
+      actions   = ["aps:ListWorkspaces"]
+      resources = ["*"]
+    }
+  }
 }
 
+data "aws_caller_identity" "this" {}
+
+data "aws_region" "this" {}
+
+data "aws_partition" "this" {}
+
 locals {
+  amp_prefix = coalesce(
+    var.managed_prometheus_namespace_prefix,
+    "${var.github_repository}-"
+  )
   repository_targets = concat(
     [
       for branch in var.github_branches :

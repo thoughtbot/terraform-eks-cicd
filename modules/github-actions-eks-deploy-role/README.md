@@ -44,8 +44,11 @@ No modules.
 |------|------|
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_caller_identity.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_partition.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
+| [aws_region.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs
 
@@ -57,6 +60,8 @@ No modules.
 | <a name="input_github_organization"></a> [github\_organization](#input\_github\_organization) | Name of the GitHub organization which will assume this role | `string` | n/a | yes |
 | <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | Name of the GitHub repository which will assume this role | `string` | n/a | yes |
 | <a name="input_iam_oidc_provider_arn"></a> [iam\_oidc\_provider\_arn](#input\_iam\_oidc\_provider\_arn) | ARN of the IAM OIDC provider for GitHub | `string` | n/a | yes |
+| <a name="input_managed_prometheus_namespace_prefix"></a> [managed\_prometheus\_namespace\_prefix](#input\_managed\_prometheus\_namespace\_prefix) | Allowed prefix for AMP rules; defaults to GitHub repository | `string` | `null` | no |
+| <a name="input_managed_prometheus_workspace_ids"></a> [managed\_prometheus\_workspace\_ids](#input\_managed\_prometheus\_workspace\_ids) | Allowed AMP workspace; disabled if empty | `list(string)` | `[]` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the IAM role | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be applied to created AWS resources | `map(string)` | `{}` | no |
 
