@@ -1,7 +1,8 @@
 resource "aws_codepipeline" "this" {
-  name     = join("-", concat(var.namespace, [var.name]))
-  role_arn = aws_iam_role.pipeline.arn
-  tags     = var.tags
+  name          = join("-", concat(var.namespace, [var.name]))
+  role_arn      = aws_iam_role.pipeline.arn
+  tags          = var.tags
+  pipeline_type = "V2"
 
   artifact_store {
     location = data.aws_s3_bucket.artifacts.bucket
