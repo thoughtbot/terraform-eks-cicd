@@ -13,7 +13,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.2.6
+        terraform_version: 1.6.2
 
     - name: Check format
       run: make all/checkfmt
@@ -28,7 +28,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.2.6
+        terraform_version: 1.6.2
 
     - name: Validate
       run: make all/validate
@@ -58,7 +58,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: 1.2.6
+        terraform_version: 1.6.2
 
     - name: Setup TFLint
       uses: terraform-linters/setup-tflint@v4
