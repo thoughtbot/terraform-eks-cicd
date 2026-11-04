@@ -48,6 +48,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_arn"></a> [arn](#output\_arn) | ARN of the created ECR repository |
+| <a name="output_base_mirror_arn"></a> [base\_mirror\_arn](#output\_base\_mirror\_arn) | ARN of the ECR repository created to mirror the base image |
 | <a name="output_base_mirror_name"></a> [base\_mirror\_name](#output\_base\_mirror\_name) | Name of the ECR repository created to mirror the base image |
 | <a name="output_name"></a> [name](#output\_name) | The name of the created ECR repository |
 <!-- END_TF_DOCS -->
